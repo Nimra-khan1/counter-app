@@ -1,0 +1,165 @@
+/* Full-screen background */
+.app-background {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end; /* Align flex container to the right */
+  align-items: center;
+  margin: 0;
+  position: relative;
+  overflow: hidden; /* Prevent any overflow or shaking */
+}
+
+/* Welcome message styling */
+.welcome-message {
+  position: absolute;
+  top: 30px; /* Position it near the top */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Optional: add shadow for better visibility */
+  z-index: 1; /* Ensure it's above the background */
+  pointer-events: none; /* Prevent interaction with this text */
+}
+
+/* Bubbles container - holds bubbles and moves them around the counter */
+.bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0; /* Bubbles behind the counter */
+  pointer-events: none; /* Prevent bubbles from blocking user interactions */
+}
+
+/* Each individual bubble */
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 123, 255, 0.6); /* Transparent blue */
+  border-radius: 50%;
+  animation: bubbleAnimation 5s infinite ease-in-out;
+  opacity: 0.7;
+}
+
+/* Bubble animation - floating up and moving towards the right */
+@keyframes bubbleAnimation {
+  0% {
+    bottom: -50px;
+    right: -200px;
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    bottom: 50%;
+    right: 50%;
+    transform: translateX(-20px);
+    opacity: 0.7;
+  }
+  100% {
+    bottom: 100%;
+    right: 0;
+    transform: translateX(20px);
+    opacity: 0.5;
+  }
+}
+
+/* Centered, transparent counter container */
+/* Centered, transparent counter container */
+.counter-container {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(212, 39, 39, 0.2);
+  transform: translateX(-300px); /* Remove the shift left */
+  position: relative; /* Required for positioning the border */
+  z-index: 1; /* Ensure content is above the bubbles */
+  color: white; /* Make text color white */
+}
+
+/* Multi-color border animation (Only on the border) */
+.counter-container::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, #00c6ff, #0072ff, #4fa3d1, #b1e4f2, #a1c4fd);
+  background-size: 400% 400%;
+  border-radius: 15px;
+  z-index: -1; /* Make sure the border stays behind the container */
+  animation: borderColorChange 5s ease infinite; /* Multi-color border animation */
+}
+
+
+/* Add background color effect when hovering over the container */
+.counter-container:hover {
+  background-color: rgba(0, 123, 255, 0.7); /* Change the background color on hover */
+}
+/* Button styling */
+.counter-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: 2px solid white; /* Add white border */
+  border-radius: 15px; /* Rounded corners */
+  cursor: pointer;
+  margin: 10px;
+  display: inline-flex;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+  animation: buttonFadeIn 0.5s ease-out; /* Fade-in animation for buttons */
+}
+
+/* Hover effect on button */
+.counter-button:hover {
+  background-color: #0056b3;
+  border-color: #ffffff; /* Ensure the border stays white when hovered */
+}
+
+/* Active state for button - changes color and adds scale effect */
+.counter-button.button-active {
+  background-color: #ff9800; /* Change color on click */
+  transform: scale(1.1); /* Enlarge slightly */
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+/* Space between icon and text in button */
+.counter-button svg {
+  margin-right: 8px;
+}
+
+
+/* Animation for container (fade-in effect) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Multi-color border animation */
+@keyframes borderColorChange {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
